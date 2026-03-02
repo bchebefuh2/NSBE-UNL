@@ -1,0 +1,50 @@
+{
+  "academic_year": "2025-2026",
+  "board": [
+    {
+      "name": "Your President Name",
+      "role": "President",
+      "major": "Computer Science, Class of 2026",
+      "bio": "A brief bio about the president — their background, goals for the chapter this year, and what they're passionate about.",
+      "photo": "",
+      "linkedin": "",
+      "email": ""
+    },
+    {
+      "name": "Board Member 2",
+      "role": "Vice President of Internal Affairs",
+      "major": "Electrical Engineering, Class of 2026",
+      "bio": "Short bio for this board member.",
+      "photo": "",
+      "linkedin": "",
+      "email": ""
+    },
+    {
+      "name": "Board Member 3",
+      "role": "Vice President of External Affairs",
+      "major": "Mechanical Engineering, Class of 2027",
+      "bio": "Short bio for this board member.",
+      "photo": "",
+      "linkedin": "",
+      "email": ""
+    },
+    {
+      "name": "Board Member 4",
+      "role": "Treasurer",
+      "major": "Computer Engineering, Class of 2026",
+      "bio": "Short bio for this board member.",
+      "photo": "",
+      "linkedin": "",
+      "email": ""
+    },
+    {
+      "name": "Board Member 5",
+      "role": "Secretary",
+      "major": "Chemical Engineering, Class of 2028",
+      "bio": "Short bio for this board member.",
+      "photo": "",
+      "linkedin": "",
+      "email": ""
+    }
+  ]
+}

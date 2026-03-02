@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NSBE UNL – National Society of Black Engineers | University of Nebraska–Lincoln</title>
+  <meta name="description" content="The University of Nebraska–Lincoln Chapter of the National Society of Black Engineers. Excelling academically, succeeding professionally, and positively impacting the community." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --scarlet:   #D00000;
+      --scarlet-dk:#A00000;
+      --gold:      #F5A623;
+      --cream:     #F5EFE0;
+      --black:     #0D0D0D;
+      --dark:      #141414;
+      --mid:       #1E1E1E;
+      --card:      #1A1A1A;
+      --border:    rgba(255,255,255,0.08);
+      --text:      #E8E0D0;
+      --muted:     #888880;
+      --font-disp: 'Bebas Neue', sans-serif;
+      --font-body: 'Crimson Pro', serif;
+      --font-mono: 'DM Mono', monospace;
+      --radius:    4px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { color: inherit; text-decoration: none; }
+
+    ::selection { background: var(--scarlet); color: #fff; }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container    { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+    .section      { padding: 100px 0; }
+    .section--alt  { background: var(--dark); }
+    .section--mid  { background: var(--mid); }
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--scarlet);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .section-title {
+      font-family: var(--font-disp);
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--cream);
+      margin-bottom: 24px;
+    }
+    .section-subtitle {
+      font-size: 1.15rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      border-radius: var(--radius);
+    }
+    .btn--primary {
+      background: var(--scarlet);
+      color: #fff;
+    }
+    .btn--primary:hover { background: var(--scarlet-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(208,0,0,0.35); }
+    .btn--outline {
+      background: transparent;
+      color: var(--cream);
+      border: 1px solid var(--border);
+    }
+    .btn--outline:hover { border-color: var(--scarlet); color: var(--scarlet); }
+    .divider { width: 60px; height: 3px; background: var(--scarlet); margin-bottom: 24px; }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: all 0.4s ease;
+    }
+    nav.scrolled {
+      background: rgba(13,13,13,0.96);
+      backdrop-filter: blur(12px);
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-logo-icon {
+      width: 42px;
+      height: 42px;
+      background: var(--scarlet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-disp);
+      font-size: 18px;
+      color: #fff;
+      letter-spacing: 0.05em;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+    .nav-logo-text {
+      font-family: var(--font-disp);
+      font-size: 20px;
+      letter-spacing: 0.12em;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .nav-logo-text span {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: var(--muted);
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-cta {
+      background: var(--scarlet);
+      color: #fff !important;
+      padding: 8px 20px;
+      border-radius: var(--radius);
+    }
+    .nav-cta:hover { background: var(--scarlet-dk) !important; color: #fff !important; }
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-hamburger span {
+      width: 24px; height: 2px;
+      background: var(--cream);
+      transition: var(--transition);
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: rgba(13,13,13,0.98);
+        backdrop-filter: blur(16px);
+        padding: 32px;
+        gap: 24px;
+        border-bottom: 1px solid var(--border);
+      }
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .hero-slides {
+      position: absolute;
+      inset: 0;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-slide.active { opacity: 1; }
+    /* Placeholder slides using CSS gradients until photos are uploaded */
+    .hero-slide:nth-child(1) { background: linear-gradient(135deg, #1a0a0a 0%, #3a0000 50%, #1a0a0a 100%); }
+    .hero-slide:nth-child(2) { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%); }
+    .hero-slide:nth-child(3) { background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #0a1a0a 100%); }
+    .hero-slide img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .hero-slide img.loaded { opacity: 1; }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(13,13,13,0.85) 0%, rgba(13,13,13,0.4) 60%, rgba(13,13,13,0.7) 100%);
+    }
+    /* Geometric accent */
+    .hero-accent {
+      position: absolute;
+      right: -80px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      border: 1px solid rgba(208,0,0,0.2);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .hero-accent::before {
+      content: '';
+      position: absolute;
+      inset: 40px;
+      border: 1px solid rgba(208,0,0,0.12);
+      border-radius: 50%;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--scarlet);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 40px; height: 1px;
+      background: var(--scarlet);
+    }
+    .hero-title {
+      font-family: var(--font-disp);
+      font-size: clamp(52px, 9vw, 110px);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: #fff;
+      margin-bottom: 28px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--scarlet);
+    }
+    .hero-subtitle {
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+    .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+      animation: bounce 2s ease-in-out infinite;
+      cursor: pointer;
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px; height: 40px;
+      background: linear-gradient(to bottom, var(--muted), transparent);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-8px); }
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 40px;
+      right: 40px;
+      display: flex;
+      gap: 8px;
+      z-index: 3;
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .dot.active { background: var(--scarlet); width: 24px; border-radius: 4px; }
+
+    /* ============================================================
+       TICKER
+    ============================================================ */
+    .ticker {
+      background: var(--scarlet);
+      padding: 12px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker 25s linear infinite;
+    }
+    .ticker-item {
+      font-family: var(--font-disp);
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      color: #fff;
+      padding: 0 32px;
+    }
+    .ticker-sep { color: rgba(255,255,255,0.5); }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       MISSION
+    ============================================================ */
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .mission-quote {
+      font-family: var(--font-body);
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-style: italic;
+      line-height: 1.55;
+      color: var(--cream);
+      position: relative;
+      padding-left: 32px;
+    }
+    .mission-quote::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--scarlet), transparent);
+    }
+    .mission-pillars { display: flex; flex-direction: column; gap: 24px; }
+    .pillar {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 20px;
+      align-items: start;
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .pillar:hover { border-color: var(--scarlet); transform: translateX(4px); }
+    .pillar-num {
+      font-family: var(--font-disp);
+      font-size: 36px;
+      color: var(--scarlet);
+      line-height: 1;
+    }
+    .pillar-title {
+      font-family: var(--font-disp);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+      margin-bottom: 6px;
+    }
+    .pillar-text { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ============================================================
+       LEADERSHIP
+    ============================================================ */
+    .leadership-intro {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .board-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .board-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+    }
+    .board-card:hover { transform: translateY(-6px); border-color: rgba(208,0,0,0.4); box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .board-card.president { grid-column: 1 / -1; }
+    @media (min-width: 768px) {
+      .board-card.president {
+        grid-column: auto;
+        grid-row: 1 / 3;
+      }
+    }
+    .board-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: var(--mid);
+      position: relative;
+    }
+    .board-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, var(--mid) 0%, var(--card) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+    }
+    .board-photo-placeholder svg { width: 48px; height: 48px; opacity: 0.4; }
+    .board-photo-placeholder span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; }
+    .board-info { padding: 20px; }
+    .board-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--scarlet);
+      margin-bottom: 6px;
+    }
+    .board-name {
+      font-family: var(--font-disp);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .board-major {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .board-bio { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+    /* ============================================================
+       EVENTS / CALENDAR
+    ============================================================ */
+    .calendar-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-top: 48px;
+    }
+    .calendar-header {
+      padding: 24px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .calendar-header-title {
+      font-family: var(--font-disp);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+      color: var(--cream);
+    }
+    .calendar-embed {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: block;
+    }
+    .calendar-note {
+      padding: 16px 32px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       GALLERY
+    ============================================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      aspect-ratio: 4/3;
+      background: var(--card);
+      cursor: pointer;
+    }
+    .gallery-item:nth-child(4n+1) { grid-column: span 2; }
+    @media (max-width: 768px) {
+      .gallery-item:nth-child(4n+1) { grid-column: span 1; }
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.7);
+      opacity: 0;
+      transition: opacity var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--muted);
+      background: linear-gradient(135deg, var(--dark) 0%, var(--card) 100%);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+    }
+    .gallery-placeholder-icon { width: 40px; height: 40px; opacity: 0.3; }
+    .gallery-empty-msg {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 0;
+      color: var(--muted);
+    }
+    .gallery-empty-msg .big-icon {
+      font-size: 64px;
+      margin-bottom: 16px;
+      opacity: 0.3;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute;
+      top: 24px; right: 32px;
+      font-size: 32px;
+      cursor: pointer;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .lightbox-close:hover { color: #fff; }
+
+    /* ============================================================
+       CONFERENCE
+    ============================================================ */
+    .conference-hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #1a0505 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .conference-hero::before {
+      content: 'NSBEAC';
+      position: absolute;
+      right: -40px; top: -20px;
+      font-family: var(--font-disp);
+      font-size: 160px;
+      color: rgba(208,0,0,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .conference-hero h3 {
+      font-family: var(--font-disp);
+      font-size: clamp(32px, 5vw, 60px);
+      color: var(--cream);
+      margin-bottom: 16px;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+    .conference-hero p { color: var(--muted); max-width: 560px; margin-bottom: 32px; font-size: 1.05rem; }
+    .conf-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .conf-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: var(--transition);
+    }
+    .conf-card:hover { border-color: var(--scarlet); transform: translateY(-4px); }
+    .conf-card-icon {
+      width: 48px; height: 48px;
+      background: rgba(208,0,0,0.12);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+    .conf-card h4 {
+      font-family: var(--font-disp);
+      font-size: 22px;
+      letter-spacing: 0.04em;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+    .conf-card p { font-size: 0.95rem; color: var(--muted); line-height: 1.6; }
+
+    /* ============================================================
+       MEMBERSHIP
+    ============================================================ */
+    .membership-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .membership-grid { grid-template-columns: 1fr; } }
+    .membership-steps { display: flex; flex-direction: column; gap: 20px; }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 36px; height: 36px;
+      background: var(--scarlet);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-disp);
+      font-size: 18px;
+      color: #fff;
+    }
+    .step-text strong { font-family: var(--font-disp); font-size: 18px; letter-spacing: 0.04em; color: var(--cream); display: block; margin-bottom: 4px; }
+    .step-text p { font-size: 0.9rem; color: var(--muted); }
+    .membership-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+    }
+    .membership-price {
+      font-family: var(--font-disp);
+      font-size: 80px;
+      color: var(--scarlet);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .membership-price sup { font-size: 40px; vertical-align: top; margin-top: 16px; display: inline-block; }
+    .membership-price-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; color: var(--muted); margin-bottom: 32px; }
+    .membership-perks { list-style: none; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; }
+    .membership-perks li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: var(--text);
+    }
+    .membership-perks li::before { content: '✦'; color: var(--scarlet); font-size: 12px; }
+
+    /* ============================================================
+       NEWSLETTER
+    ============================================================ */
+    .newsletter-wrapper {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 60px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    @media (max-width: 768px) { .newsletter-wrapper { grid-template-columns: 1fr; padding: 40px; } }
+    .newsletter-form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-input {
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color var(--transition);
+    }
+    .form-input:focus { border-color: var(--scarlet); }
+    .form-input::placeholder { color: var(--muted); }
+
+    /* ============================================================
+       CONTACT
+    ============================================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-info { display: flex; flex-direction: column; gap: 32px; }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-item-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--scarlet);
+    }
+    .contact-item-value { font-size: 1rem; color: var(--cream); }
+    .contact-social {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .social-btn {
+      width: 40px; height: 40px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 18px;
+    }
+    .social-btn:hover { border-color: var(--scarlet); transform: translateY(-2px); }
+    .contact-form { display: flex; flex-direction: column; gap: 20px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+    textarea.form-input { resize: vertical; min-height: 140px; }
+    .form-success {
+      display: none;
+      background: rgba(0,180,0,0.1);
+      border: 1px solid rgba(0,180,0,0.3);
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      color: #7dff7d;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================================
+       STATS
+    ============================================================ */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    @media (max-width: 700px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+    .stat {
+      background: var(--dark);
+      padding: 36px 28px;
+      text-align: center;
+      transition: var(--transition);
+    }
+    .stat:hover { background: var(--card); }
+    .stat-num {
+      font-family: var(--font-disp);
+      font-size: 52px;
+      color: var(--scarlet);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand p { font-size: 0.9rem; color: var(--muted); margin-top: 16px; line-height: 1.7; max-width: 300px; }
+    .footer-col-title {
+      font-family: var(--font-disp);
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--muted);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--scarlet); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .footer-bottom-text span { color: var(--scarlet); }
+
+    /* ============================================================
+       SCROLL ANIMATIONS
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Active nav link */
+    .nav-links a.active { color: var(--cream); }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================ NAVIGATION -->
+  <nav id="navbar">
+    <div class="container nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="nav-logo-icon">NSBE</div>
+        <div class="nav-logo-text">
+          NSBE
+          <span>University of Nebraska–Lincoln</span>
+        </div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#leadership">Board</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#conference">Conference</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#membership" class="nav-cta">Join NSBE</a></li>
+      </ul>
+      <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================ HERO -->
+  <section id="hero">
+    <div class="hero-slides" id="heroSlides">
+      <!-- Slides are populated from _data/site.json or show gradient placeholders -->
+      <div class="hero-slide active">
+        <!-- Photo goes here: add a background-image via the CMS / data file -->
+      </div>
+      <div class="hero-slide"></div>
+      <div class="hero-slide"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-accent"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">University of Nebraska–Lincoln</div>
+        <h1 class="hero-title">
+          Built to<br /><em>Excel.</em><br />Made to Lead.
+        </h1>
+        <p class="hero-subtitle">
+          We are the UNL chapter of the National Society of Black Engineers — a community dedicated to academic excellence, professional success, and community impact in Lincoln, Nebraska.
+        </p>
+        <div class="hero-buttons">
+          <a href="#membership" class="btn btn--primary">Join NSBE ↗</a>
+          <a href="#about"     class="btn btn--outline">Learn More</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll" onclick="scrollToSection('about')">Scroll</div>
+    <div class="slide-dots" id="slideDots"></div>
+  </section>
+
+  <!-- ============================================================ TICKER -->
+  <div class="ticker">
+    <div class="ticker-track" id="tickerTrack">
+      <!-- Duplicated for seamless loop -->
+    </div>
+  </div>
+
+  <!-- ============================================================ MISSION / ABOUT -->
+  <section class="section" id="about">
+    <div class="container">
+      <span class="section-label reveal">Our Mission</span>
+      <div class="mission-grid">
+        <div class="reveal">
+          <h2 class="section-title">Who We Are</h2>
+          <blockquote class="mission-quote">
+            "To increase the number of culturally responsible Black engineers who excel academically, succeed professionally, and positively impact the community."
+          </blockquote>
+          <p style="color:var(--muted); margin-top:24px; font-size:1rem;">
+            Founded nationally in 1975, NSBE is one of the largest student-governed organizations in the United States. The UNL chapter serves Black engineering students at the University of Nebraska–Lincoln through programming, mentorship, professional development, and community engagement.
+          </p>
+          <a href="#membership" class="btn btn--primary" style="margin-top:32px;">Become a Member</a>
+        </div>
+        <div class="mission-pillars">
+          <div class="pillar reveal reveal-delay-1">
+            <div class="pillar-num">01</div>
+            <div>
+              <div class="pillar-title">Excel Academically</div>
+              <p class="pillar-text">Study nights, peer tutoring, mentorship programs, and academic excellence workshops at UNL.</p>
+            </div>
+          </div>
+          <div class="pillar reveal reveal-delay-2">
+            <div class="pillar-num">02</div>
+            <div>
+              <div class="pillar-title">Succeed Professionally</div>
+              <p class="pillar-text">Career fairs, industry networking, technical interview prep, and company partnerships in Nebraska and beyond.</p>
+            </div>
+          </div>
+          <div class="pillar reveal reveal-delay-3">
+            <div class="pillar-num">03</div>
+            <div>
+              <div class="pillar-title">Impact the Community</div>
+              <p class="pillar-text">STEM outreach in Lincoln schools, community service events, and cultural programming celebrating Black excellence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ STATS -->
+  <div class="container" style="padding-bottom:80px;">
+    <div class="stats-bar reveal" id="statsBar">
+      <!-- populated from data -->
+    </div>
+  </div>
+
+  <!-- ============================================================ LEADERSHIP -->
+  <section class="section section--alt" id="leadership">
+    <div class="container">
+      <div class="leadership-intro">
+        <div>
+          <span class="section-label reveal">Executive Board</span>
+          <h2 class="section-title reveal">Meet the <br/>Leadership</h2>
+          <p class="section-subtitle reveal">Our executive board leads the chapter through academic year
+            <span id="currentYear">2024</span>–<span id="nextYear">2025</span>. Elected annually by chapter members.
+          </p>
+        </div>
+        <p style="color:var(--muted); font-size:0.9rem; font-family:var(--font-mono); letter-spacing:0.08em; max-width:220px; text-align:right;" class="reveal">
+          Board updated each academic year by chapter admin.
+        </p>
+      </div>
+      <!-- Board cards injected here by JS from _data/leadership.json -->
+      <div class="board-grid" id="boardGrid">
+        <p style="color:var(--muted); font-family:var(--font-mono); font-size:12px;">Loading leadership data…</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ EVENTS / CALENDAR -->
+  <section class="section" id="events">
+    <div class="container">
+      <span class="section-label reveal">What's Happening</span>
+      <h2 class="section-title reveal">Upcoming Events</h2>
+      <p class="section-subtitle reveal">Stay up to date with GBMs, workshops, socials, and community events. All events are tracked for member points.</p>
+
+      <div class="calendar-wrapper reveal">
+        <div class="calendar-header">
+          <div class="calendar-header-title">NSBE UNL Event Calendar</div>
+          <a href="https://calendar.google.com" class="btn btn--outline" id="calendarLink" target="_blank" rel="noopener">+ Add to My Google Calendar</a>
+        </div>
+        <!-- REPLACE the src with your actual Google Calendar embed URL -->
+        <!-- How to get embed URL: Google Calendar → Settings → [Your NSBE calendar] → Scroll to "Integrate calendar" → Copy embed code src URL -->
+        <iframe
+          class="calendar-embed"
+          id="calendarEmbed"
+          src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&bgcolor=%230D0D0D&color=%23D00000"
+          frameborder="0"
+          scrolling="no"
+          title="NSBE UNL Events Calendar">
+        </iframe>
+        <div class="calendar-note">
+          ⚙ Admin: Update events via Google Calendar — no code changes required. See README for setup instructions.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ GALLERY -->
+  <section class="section section--alt" id="gallery">
+    <div class="container">
+      <span class="section-label reveal">Chapter Life</span>
+      <h2 class="section-title reveal">Gallery</h2>
+      <p class="section-subtitle reveal">Moments from our GBMs, events, conferences, and community activities.</p>
+
+      <!-- Gallery injected by JS from _data/gallery.json -->
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Placeholder shown until photos are uploaded -->
+        <div class="gallery-empty-msg">
+          <div class="big-icon">📸</div>
+          <p style="font-family:var(--font-disp); font-size:24px; color:var(--muted); letter-spacing:0.08em;">Photos Coming Soon</p>
+          <p style="font-size:0.9rem; color:var(--muted); margin-top:8px;">Upload photos via the CMS at <strong>/admin</strong> to populate the gallery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-close" onclick="closeLightbox()">×</div>
+    <img id="lightboxImg" src="" alt="" />
+  </div>
+
+  <!-- ============================================================ CONFERENCE -->
+  <section class="section" id="conference">
+    <div class="container">
+      <span class="section-label reveal">National Stage</span>
+      <h2 class="section-title reveal">NSBE Conferences</h2>
+      <p class="section-subtitle reveal">NSBE hosts world-class conferences that connect Black engineers with top companies and peers from across the country.</p>
+
+      <div class="conference-hero reveal">
+        <h3>Annual <br/>Convention</h3>
+        <p>The NSBE Annual Convention (NSBEAC) is the largest gathering of Black engineers in the world — a career fair, technical workshops, networking, and competitions. We send UNL members every year.</p>
+        <a href="https://convention.nsbe.org" target="_blank" rel="noopener" class="btn btn--primary">NSBEAC Info ↗</a>
+      </div>
+
+      <div class="conf-cards">
+        <div class="conf-card reveal reveal-delay-1">
+          <div class="conf-card-icon">🏆</div>
+          <h4>NSBE Annual Convention</h4>
+          <p>The flagship event. 15,000+ attendees, the world's largest student-run career fair, technical competitions, and workshops.</p>
+          <a href="https://convention.nsbe.org" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">Learn More →</a>
+        </div>
+        <div class="conf-card reveal reveal-delay-2">
+          <div class="conf-card-icon">🌎</div>
+          <h4>Region V Conference</h4>
+          <p>Our regional conference connects UNL with NSBE chapters across the midwest. Great for networking, workshops, and regional competitions.</p>
+          <a href="https://nsbe.org/regions/region-v" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">Region V Info →</a>
+        </div>
+        <div class="conf-card reveal reveal-delay-3">
+          <div class="conf-card-icon">🎓</div>
+          <h4>SEEK Program</h4>
+          <p>NSBE's Summer Engineering Experience for Kids — volunteer-driven STEM outreach we participate in to give back and inspire the next generation.</p>
+          <a href="https://nsbe.org/programs/seek" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">SEEK Info →</a>
+        </div>
+        <div class="conf-card reveal reveal-delay-4">
+          <div class="conf-card-icon">💼</div>
+          <h4>Fall Regional Conference</h4>
+          <p>A focused recruiting event in the fall semester — companies actively recruiting Black engineers meet with our chapter members.</p>
+          <a href="https://nsbe.org" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">NSBE National →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ MEMBERSHIP -->
+  <section class="section section--mid" id="membership">
+    <div class="container">
+      <span class="section-label reveal">Get Involved</span>
+      <h2 class="section-title reveal">Join Our Chapter</h2>
+      <p class="section-subtitle reveal">Membership opens doors — to scholarships, conferences, internships, and a lifelong professional network.</p>
+
+      <div class="membership-grid">
+        <div class="membership-steps">
+          <div class="step reveal reveal-delay-1">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Register Nationally</strong>
+              <p>Create your NSBE membership at <a href="https://nsbe.org" target="_blank" style="color:var(--scarlet);">nsbe.org</a> to get your national member number.</p>
+            </div>
+          </div>
+          <div class="step reveal reveal-delay-2">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Join the UNL Chapter</strong>
+              <p>Sign up with our chapter by attending a General Body Meeting (GBM) or completing the online chapter form.</p>
+            </div>
+          </div>
+          <div class="step reveal reveal-delay-3">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Attend Events & Earn Points</strong>
+              <p>Participation points unlock conference funding, scholarships, and leadership opportunities within the chapter.</p>
+            </div>
+          </div>
+          <div class="step reveal reveal-delay-4">
+            <div class="step-num">4</div>
+            <div class="step-text">
+              <strong>Represent at Conferences</strong>
+              <p>Use your points to be sponsored to attend regional and national NSBE conferences and compete nationally.</p>
+            </div>
+          </div>
+        </div>
+        <div class="membership-card reveal">
+          <div class="membership-price"><sup>$</sup>30</div>
+          <div class="membership-price-label">/ Academic Year · NSBE National Dues</div>
+          <ul class="membership-perks">
+            <li>Access to UNL Chapter events & GBMs</li>
+            <li>Eligibility for NSBE scholarships</li>
+            <li>Discounted conference registration</li>
+            <li>National NSBE member network access</li>
+            <li>Chapter funding & sponsorship eligibility</li>
+            <li>Professional development resources</li>
+          </ul>
+          <a href="https://nsbe.org/membership" target="_blank" rel="noopener" class="btn btn--primary" style="width:100%; justify-content:center;">Join at NSBE.org ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ NEWSLETTER -->
+  <section class="section section--alt" id="newsletter">
+    <div class="container">
+      <span class="section-label reveal">Stay Connected</span>
+      <h2 class="section-title reveal">Newsletter</h2>
+
+      <div class="newsletter-wrapper reveal">
+        <div>
+          <h3 style="font-family:var(--font-disp); font-size:clamp(28px,4vw,48px); color:var(--cream); letter-spacing:0.04em; margin-bottom:16px;">Never Miss a Beat</h3>
+          <p style="color:var(--muted); line-height:1.7; margin-bottom:24px;">Get event announcements, scholarship opportunities, company spotlights, and chapter updates delivered to your inbox — no spam, ever.</p>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px;">
+            <li style="display:flex; gap:10px; align-items:center; color:var(--muted); font-size:0.9rem;"><span style="color:var(--scarlet);">✦</span> Event & GBM reminders</li>
+            <li style="display:flex; gap:10px; align-items:center; color:var(--muted); font-size:0.9rem;"><span style="color:var(--scarlet);">✦</span> Scholarship & internship openings</li>
+            <li style="display:flex; gap:10px; align-items:center; color:var(--muted); font-size:0.9rem;"><span style="color:var(--scarlet);">✦</span> Conference news & registration windows</li>
+            <li style="display:flex; gap:10px; align-items:center; color:var(--muted); font-size:0.9rem;"><span style="color:var(--scarlet);">✦</span> Chapter announcements</li>
+          </ul>
+        </div>
+        <!-- REPLACE with your actual Mailchimp embed form action URL -->
+        <!-- How-to: Mailchimp → Audience → Signup Forms → Embedded Forms → copy the action URL from the <form> tag -->
+        <form class="newsletter-form" id="newsletterForm" action="https://YOUR_MAILCHIMP_LIST_URL" method="post" target="_blank" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="nl-firstname">First Name</label>
+            <input class="form-input" type="text" id="nl-firstname" name="FNAME" placeholder="Your first name" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nl-email">Email Address</label>
+            <input class="form-input" type="email" id="nl-email" name="EMAIL" placeholder="you@huskers.unl.edu" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="nl-year">Year in School</label>
+            <select class="form-input" id="nl-year" name="MMERGE2">
+              <option value="">Select your year</option>
+              <option>Freshman</option>
+              <option>Sophomore</option>
+              <option>Junior</option>
+              <option>Senior</option>
+              <option>Graduate Student</option>
+              <option>Alumni</option>
+            </select>
+          </div>
+          <!-- Mailchimp bot protection (hidden) -->
+          <div style="position:absolute; left:-5000px;" aria-hidden="true">
+            <input type="text" name="b_XXXXXXXX_XXXXXXXX" tabindex="-1" value="">
+          </div>
+          <button type="submit" class="btn btn--primary">Subscribe ↗</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <span class="section-label reveal">Get in Touch</span>
+      <h2 class="section-title reveal">Contact Us</h2>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <span class="contact-item-label">Email</span>
+            <a class="contact-item-value" id="contactEmailDisplay" href="#" style="color:var(--scarlet);">
+              Loading...
+            </a>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Location</span>
+            <span class="contact-item-value">University of Nebraska–Lincoln<br />Lincoln, NE 68588</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Chapter Type</span>
+            <span class="contact-item-value">NSBE Collegiate Chapter<br />Region V</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-item-label">Social Media</span>
+            <div class="contact-social" id="socialLinks">
+              <!-- Populated from data -->
+            </div>
+          </div>
+        </div>
+
+        <!-- REPLACE the Formspree endpoint with your actual form ID from https://formspree.io -->
+        <!-- How-to: Sign up at formspree.io with your NSBE UNL email → New form → copy the action URL -->
+        <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="cf-name">Name</label>
+              <input class="form-input" type="text" id="cf-name" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-email">Email</label>
+              <input class="form-input" type="email" id="cf-email" name="email" placeholder="your@email.com" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-subject">I am a…</label>
+            <select class="form-input" id="cf-subject" name="subject">
+              <option value="">Select an option</option>
+              <option>UNL Student</option>
+              <option>Prospective Student</option>
+              <option>Alumni</option>
+              <option>Company / Recruiter</option>
+              <option>Faculty / Staff</option>
+              <option>Community Member</option>
+              <option>Press / Media</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cf-message">Message</label>
+            <textarea class="form-input" id="cf-message" name="message" placeholder="How can we help you?" required></textarea>
+          </div>
+          <div class="form-success" id="formSuccess">✓ Message sent! We'll get back to you shortly.</div>
+          <button type="submit" class="btn btn--primary">Send Message ↗</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <div class="nav-logo-icon">NSBE</div>
+            <div class="nav-logo-text">
+              NSBE UNL
+              <span>Nebraska Chapter</span>
+            </div>
+          </div>
+          <p>The University of Nebraska–Lincoln chapter of the National Society of Black Engineers. Engineered to withstand. Built to lead.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Chapter</div>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#leadership">Leadership Board</a></li>
+            <li><a href="#membership">Membership</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Programs</div>
+          <ul class="footer-links">
+            <li><a href="#events">Events & Calendar</a></li>
+            <li><a href="#conference">NSBE Conference</a></li>
+            <li><a href="#newsletter">Newsletter</a></li>
+            <li><a href="https://nsbe.org/programs/seek" target="_blank" rel="noopener">SEEK Program</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Connect</div>
+          <ul class="footer-links">
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="https://nsbe.org" target="_blank" rel="noopener">NSBE National</a></li>
+            <li><a href="https://engineering.unl.edu" target="_blank" rel="noopener">UNL Engineering</a></li>
+            <li><a href="https://involved.unl.edu" target="_blank" rel="noopener">UNL Involvement</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-text">© <span id="footerYear">2025</span> NSBE University of Nebraska–Lincoln Chapter. All rights reserved.</div>
+        <div class="footer-bottom-text">Affiliated with <span>NSBE National</span> · Region V</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ JAVASCRIPT -->
+  <script>
+    // ---- Navigation scroll behavior ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+      highlightNav();
+    });
+
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // ---- Smooth scroll on nav links ----
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          document.getElementById('navLinks').classList.remove('open');
+        }
+      });
+    });
+
+    function scrollToSection(id) {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // ---- Active nav highlight ----
+    function highlightNav() {
+      const sections = document.querySelectorAll('section[id]');
+      let active = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) active = s.id;
+      });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + active);
+      });
+    }
+
+    // ---- Hero slideshow ----
+    const slides = document.querySelectorAll('.hero-slide');
+    const dotsContainer = document.getElementById('slideDots');
+    let currentSlide = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    });
+
+    function goToSlide(n) {
+      slides[currentSlide].classList.remove('active');
+      dotsContainer.children[currentSlide].classList.remove('active');
+      currentSlide = (n + slides.length) % slides.length;
+      slides[currentSlide].classList.add('active');
+      dotsContainer.children[currentSlide].classList.add('active');
+    }
+    setInterval(() => goToSlide(currentSlide + 1), 5000);
+
+    // ---- Ticker ----
+    const tickerItems = [
+      'Engineered to Withstand', 'NSBE UNL', 'Go Big Red',
+      'Excel Academically', 'Succeed Professionally', 'Impact the Community',
+      'Region V', 'NSBE Annual Convention', 'Husker Engineering',
+    ];
+    const track = document.getElementById('tickerTrack');
+    const doubled = [...tickerItems, ...tickerItems];
+    track.innerHTML = doubled.map(t =>
+      `<span class="ticker-item">${t} <span class="ticker-sep">•</span></span>`
+    ).join('');
+
+    // ---- Scroll reveal ----
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+    // ---- Years ----
+    const now = new Date();
+    const yr  = now.getFullYear();
+    document.getElementById('currentYear').textContent = yr;
+    document.getElementById('nextYear').textContent    = yr + 1;
+    document.getElementById('footerYear').textContent  = yr;
+
+    // ---- Load data from JSON files ----
+    async function loadData() {
+      try {
+        // Site settings
+        const siteRes = await fetch('_data/site.json');
+        const site    = await siteRes.json();
+
+        // Email
+        const emailEl = document.getElementById('contactEmailDisplay');
+        emailEl.textContent = site.email;
+        emailEl.href        = 'mailto:' + site.email;
+
+        // Stats
+        const statsBar = document.getElementById('statsBar');
+        statsBar.innerHTML = (site.stats || []).map(s => `
+          <div class="stat">
+            <div class="stat-num">${s.value}</div>
+            <div class="stat-label">${s.label}</div>
+          </div>`).join('');
+
+        // Social links
+        const socials = document.getElementById('socialLinks');
+        const icons = { instagram: '📸', linkedin: '💼', twitter: '🐦', facebook: '📘', discord: '💬', linktree: '🌳' };
+        socials.innerHTML = Object.entries(site.social || {})
+          .filter(([, url]) => url)
+          .map(([name, url]) => `<a class="social-btn" href="${url}" target="_blank" rel="noopener" title="${name}">${icons[name] || '🔗'}</a>`)
+          .join('');
+
+        // Hero slides
+        if (site.hero_photos && site.hero_photos.length) {
+          const slideEls = document.querySelectorAll('.hero-slide');
+          site.hero_photos.forEach((photo, i) => {
+            if (slideEls[i]) {
+              slideEls[i].style.backgroundImage = `url('${photo.url}')`;
+              slideEls[i].style.backgroundSize  = 'cover';
+              slideEls[i].style.backgroundPosition = 'center';
+            }
+          });
+        }
+
+        // Mailchimp form action
+        if (site.mailchimp_url) {
+          document.getElementById('newsletterForm').action = site.mailchimp_url;
+        }
+
+        // Formspree
+        if (site.formspree_id) {
+          document.getElementById('contactForm').action =
+            'https://formspree.io/f/' + site.formspree_id;
+        }
+
+        // Google Calendar
+        if (site.google_calendar_id) {
+          const calId = encodeURIComponent(site.google_calendar_id);
+          document.getElementById('calendarEmbed').src =
+            `https://calendar.google.com/calendar/embed?src=${calId}&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=1&bgcolor=%230D0D0D&color=%23D00000`;
+          document.getElementById('calendarLink').href =
+            `https://calendar.google.com/calendar/r?cid=${site.google_calendar_id}`;
+        }
+
+      } catch (err) {
+        console.warn('Could not load site.json, using defaults.', err);
+        document.getElementById('contactEmailDisplay').textContent = 'nsbe@unl.edu';
+        document.getElementById('contactEmailDisplay').href = 'mailto:nsbe@unl.edu';
+        // Default stats
+        document.getElementById('statsBar').innerHTML = `
+          <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Active Members</div></div>
+          <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Events / Year</div></div>
+          <div class="stat"><div class="stat-num">5</div><div class="stat-label">Board Members</div></div>
+          <div class="stat"><div class="stat-num">50</div><div class="stat-label">Years of NSBE</div></div>`;
+      }
+
+      // Leadership
+      try {
+        const ldRes  = await fetch('_data/leadership.json');
+        const ldData = await ldRes.json();
+        renderLeadership(ldData.board || []);
+      } catch (err) {
+        console.warn('Could not load leadership.json', err);
+        renderLeadershipFallback();
+      }
+
+      // Gallery
+      try {
+        const galRes  = await fetch('_data/gallery.json');
+        const galData = await galRes.json();
+        if (galData.photos && galData.photos.length) renderGallery(galData.photos);
+      } catch (err) {
+        console.warn('Could not load gallery.json', err);
+      }
+    }
+
+    function renderLeadership(board) {
+      const grid = document.getElementById('boardGrid');
+      if (!board.length) { renderLeadershipFallback(); return; }
+      grid.innerHTML = board.map((m, i) => `
+        <div class="board-card ${i === 0 ? 'president' : ''} reveal">
+          ${m.photo
+            ? `<img class="board-photo" src="${m.photo}" alt="${m.name}" loading="lazy" />`
+            : `<div class="board-photo-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+                <span>Photo Pending</span>
+              </div>`}
+          <div class="board-info">
+            <div class="board-role">${m.role}</div>
+            <div class="board-name">${m.name}</div>
+            <div class="board-major">${m.major || ''}</div>
+            ${m.bio ? `<p class="board-bio">${m.bio}</p>` : ''}
+          </div>
+        </div>`).join('');
+      // Re-observe new elements
+      document.querySelectorAll('.board-card.reveal').forEach(el => revealObs.observe(el));
+    }
+
+    function renderLeadershipFallback() {
+      const placeholders = [
+        { role: 'President', name: 'Name TBD', major: '' },
+        { role: 'Vice President of Internal Affairs', name: 'Name TBD', major: '' },
+        { role: 'Vice President of External Affairs', name: 'Name TBD', major: '' },
+        { role: 'Treasurer', name: 'Name TBD', major: '' },
+        { role: 'Secretary', name: 'Name TBD', major: '' },
+      ];
+      renderLeadership(placeholders);
+    }
+
+    function renderGallery(photos) {
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = photos.map(p => `
+        <div class="gallery-item" onclick="openLightbox('${p.url}')">
+          <img src="${p.url}" alt="${p.caption || 'Gallery photo'}" loading="lazy" />
+          <div class="gallery-item-overlay">
+            <span style="color:#fff; font-family:var(--font-mono); font-size:12px; letter-spacing:0.1em;">${p.caption || 'View Photo'}</span>
+          </div>
+        </div>`).join('');
+    }
+
+    // ---- Lightbox ----
+    function openLightbox(src) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('open');
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+    }
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+
+    // ---- Contact form (AJAX via Formspree) ----
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      try {
+        const res = await fetch(this.action, {
+          method: 'POST',
+          body: new FormData(this),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          document.getElementById('formSuccess').style.display = 'block';
+          this.reset();
+        } else {
+          btn.textContent = 'Error – try again';
+        }
+      } catch {
+        btn.textContent = 'Error – try again';
+      }
+      btn.disabled = false;
+      if (btn.textContent !== 'Error – try again') btn.textContent = 'Send Message ↗';
+    });
+
+    // ---- Init ----
+    loadData();
+  </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+{
+  "site_name": "NSBE UNL",
+  "tagline": "University of Nebraska–Lincoln Chapter",
+  "email": "nsbe@huskers.unl.edu",
+  "google_calendar_id": "YOUR_CALENDAR_ID@group.calendar.google.com",
+  "mailchimp_url": "https://YOUR_MAILCHIMP_LIST_URL",
+  "formspree_id": "YOUR_FORMSPREE_FORM_ID",
+  "hero_photos": [
+    {
+      "url": "uploads/gallery/hero-1.jpg",
+      "alt": "NSBE UNL members at GBM"
+    },
+    {
+      "url": "uploads/gallery/hero-2.jpg",
+      "alt": "NSBE UNL at conference"
+    },
+    {
+      "url": "uploads/gallery/hero-3.jpg",
+      "alt": "NSBE UNL community event"
+    }
+  ],
+  "stats": [
+    { "value": "50+",  "label": "Active Members" },
+    { "value": "12",   "label": "Events This Year" },
+    { "value": "5",    "label": "Board Members" },
+    { "value": "1975", "label": "NSBE Founded" }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/nsbeunl",
+    "linkedin":  "",
+    "twitter":   "",
+    "discord":   "",
+    "linktree":  ""
+  }
+}

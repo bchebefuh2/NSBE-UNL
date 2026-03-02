@@ -1,0 +1,103 @@
+# ============================================================
+# Decap CMS Configuration for NSBE UNL
+# This file defines what non-technical admins can edit
+# at yoursite.com/admin
+# ============================================================
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/nsbe-unl   # ← REPLACE with your GitHub repo (e.g. nsbe-unl/website)
+  branch: main
+
+# Where uploaded images/files are stored in the repo
+media_folder: "uploads/gallery"
+public_folder: "/uploads/gallery"
+
+# ============================================================
+# COLLECTIONS — each collection is a section of the CMS
+# ============================================================
+collections:
+
+  # ----------------------------------------------------------
+  # 1. SITE SETTINGS (email, social links, stats, calendar ID)
+  # ----------------------------------------------------------
+  - name: "settings"
+    label: "⚙ Site Settings"
+    files:
+      - name: "site"
+        label: "General Settings"
+        file: "_data/site.json"
+        format: json
+        fields:
+          - { label: "Chapter Email", name: "email", widget: "string", hint: "Email shown on site and where contact form sends to" }
+          - { label: "Google Calendar ID", name: "google_calendar_id", widget: "string", hint: "Found in Google Calendar settings → Integrate calendar → Calendar ID (e.g. abc123@group.calendar.google.com)" }
+          - { label: "Mailchimp Form URL", name: "mailchimp_url", widget: "string", hint: "Paste the Mailchimp embedded form action URL here" }
+          - { label: "Formspree Form ID", name: "formspree_id", widget: "string", hint: "From formspree.io — just the ID part (e.g. xvoeabcd)" }
+          - label: "Hero Slideshow Photos"
+            name: "hero_photos"
+            widget: "list"
+            summary: "{{fields.alt}}"
+            fields:
+              - { label: "Photo", name: "url", widget: "image" }
+              - { label: "Alt Text (describe the photo)", name: "alt", widget: "string" }
+          - label: "Stats Bar"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.value}} {{fields.label}}"
+            fields:
+              - { label: "Number / Value", name: "value", widget: "string", hint: "e.g. '50+' or '1975'" }
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. 'Active Members'" }
+          - label: "Social Media Links"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+              - { label: "LinkedIn URL",  name: "linkedin",  widget: "string", required: false }
+              - { label: "Twitter/X URL", name: "twitter",   widget: "string", required: false }
+              - { label: "Discord URL",   name: "discord",   widget: "string", required: false }
+              - { label: "Linktree URL",  name: "linktree",  widget: "string", required: false }
+
+  # ----------------------------------------------------------
+  # 2. LEADERSHIP BOARD (updated each academic year)
+  # ----------------------------------------------------------
+  - name: "leadership"
+    label: "👥 Leadership Board"
+    files:
+      - name: "board"
+        label: "Executive Board"
+        file: "_data/leadership.json"
+        format: json
+        fields:
+          - { label: "Academic Year (e.g. 2025-2026)", name: "academic_year", widget: "string" }
+          - label: "Board Members"
+            name: "board"
+            widget: "list"
+            summary: "{{fields.role}} — {{fields.name}}"
+            fields:
+              - { label: "Full Name",   name: "name",     widget: "string" }
+              - { label: "Role / Title", name: "role",    widget: "string", hint: "e.g. President, Treasurer, VP of External Affairs" }
+              - { label: "Major & Year", name: "major",   widget: "string", hint: "e.g. Computer Science, Class of 2026" }
+              - { label: "Short Bio",   name: "bio",      widget: "text",   required: false }
+              - { label: "Headshot Photo", name: "photo", widget: "image",  required: false, hint: "Upload a professional headshot (square crop recommended)" }
+              - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }
+              - { label: "Email",        name: "email",   widget: "string", required: false }
+
+  # ----------------------------------------------------------
+  # 3. PHOTO GALLERY
+  # ----------------------------------------------------------
+  - name: "gallery"
+    label: "📸 Photo Gallery"
+    files:
+      - name: "photos"
+        label: "Gallery Photos"
+        file: "_data/gallery.json"
+        format: json
+        fields:
+          - label: "Photos"
+            name: "photos"
+            widget: "list"
+            summary: "{{fields.caption}}"
+            fields:
+              - { label: "Photo",   name: "url",     widget: "image" }
+              - { label: "Caption", name: "caption", widget: "string", required: false }
+              - { label: "Event / Date", name: "event", widget: "string", required: false, hint: "e.g. Fall GBM 2024" }
