@@ -6,7 +6,7 @@
 
 backend:
   name: github
-  repo: YOUR_GITHUB_USERNAME/nsbe-unl   # ← REPLACE with your GitHub repo (e.g. nsbe-unl/website)
+  repo: bchebefuh2/NSBE-UNL   # ← REPLACE with your GitHub repo (e.g. nsbe-unl/website)
   branch: main
 
 # Where uploaded images/files are stored in the repo
