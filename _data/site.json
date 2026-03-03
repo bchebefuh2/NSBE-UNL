@@ -2,9 +2,16 @@
   "site_name": "NSBE UNL",
   "tagline": "University of Nebraska–Lincoln Chapter",
   "email": "nsbe@huskers.unl.edu",
+  "outlook_calendar_url": "https://outlook.office365.com/calendar/published/YOUR_OUTLOOK_CALENDAR_HASH/calendar.html",
   "google_calendar_id": "YOUR_CALENDAR_ID@group.calendar.google.com",
   "mailchimp_url": "https://YOUR_MAILCHIMP_LIST_URL",
   "formspree_id": "YOUR_FORMSPREE_FORM_ID",
+  "announcement": {
+    "enabled": true,
+    "text": "🎉 NSBE Annual Convention 2026 registration is open!",
+    "link_text": "Register now →",
+    "link_url": "https://convention.nsbe.org"
+  },
   "hero_photos": [
     {
       "url": "uploads/gallery/hero-1.jpg",
@@ -20,16 +27,28 @@
     }
   ],
   "stats": [
-    { "value": "50+",  "label": "Active Members" },
-    { "value": "12",   "label": "Events This Year" },
-    { "value": "5",    "label": "Board Members" },
-    { "value": "1975", "label": "NSBE Founded" }
+    {
+      "value": "50+",
+      "label": "Active Members"
+    },
+    {
+      "value": "12",
+      "label": "Events This Year"
+    },
+    {
+      "value": "5",
+      "label": "Board Members"
+    },
+    {
+      "value": "1975",
+      "label": "NSBE Founded"
+    }
   ],
   "social": {
     "instagram": "https://instagram.com/nsbeunl",
-    "linkedin":  "",
-    "twitter":   "",
-    "discord":   "",
-    "linktree":  ""
+    "linkedin": "",
+    "twitter": "",
+    "discord": "",
+    "linktree": ""
   }
 }

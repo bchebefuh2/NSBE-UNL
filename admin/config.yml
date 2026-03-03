@@ -30,13 +30,24 @@ collections:
         format: json
         fields:
           - { label: "Chapter Email", name: "email", widget: "string", hint: "Email shown on site and where contact form sends to" }
-          - { label: "Google Calendar ID", name: "google_calendar_id", widget: "string", hint: "Found in Google Calendar settings → Integrate calendar → Calendar ID (e.g. abc123@group.calendar.google.com)" }
+          - label: "Announcement Banner"
+            name: "announcement"
+            widget: "object"
+            hint: "The red bar at the very top of the website. Turn it on/off here."
+            fields:
+              - { label: "Show Banner?", name: "enabled", widget: "boolean", default: false, hint: "Toggle this OFF to hide the banner. Toggle ON to show it." }
+              - { label: "Message", name: "text", widget: "string", hint: "The main announcement text, e.g. 'GBM this Thursday at 6pm in Kiesselbach!'", required: false }
+              - { label: "Button Text", name: "link_text", widget: "string", hint: "e.g. 'Learn more →' or 'Register now →'", required: false }
+              - { label: "Button Link (URL)", name: "link_url", widget: "string", hint: "Where the button goes. Leave blank for no button.", required: false }
+          - { label: "Outlook Calendar URL", name: "outlook_calendar_url", widget: "string", hint: "From Outlook on the web: Calendar → Share → Publish calendar → copy the HTML link URL. RECOMMENDED — UNL uses Microsoft 365." }
+          - { label: "Google Calendar ID", name: "google_calendar_id", widget: "string", hint: "Optional: Google Calendar settings → Integrate calendar → Calendar ID" }
           - { label: "Mailchimp Form URL", name: "mailchimp_url", widget: "string", hint: "Paste the Mailchimp embedded form action URL here" }
           - { label: "Formspree Form ID", name: "formspree_id", widget: "string", hint: "From formspree.io — just the ID part (e.g. xvoeabcd)" }
           - label: "Hero Slideshow Photos"
             name: "hero_photos"
             widget: "list"
             summary: "{{fields.alt}}"
+            hint: "Add as many photos as you want — they will rotate automatically on the homepage."
             fields:
               - { label: "Photo", name: "url", widget: "image" }
               - { label: "Alt Text (describe the photo)", name: "alt", widget: "string" }
@@ -101,3 +112,52 @@ collections:
               - { label: "Photo",   name: "url",     widget: "image" }
               - { label: "Caption", name: "caption", widget: "string", required: false }
               - { label: "Event / Date", name: "event", widget: "string", required: false, hint: "e.g. Fall GBM 2024" }
+
+  # ----------------------------------------------------------
+  # 4. SPONSORS
+  # ----------------------------------------------------------
+  - name: "sponsors"
+    label: "🏢 Sponsors & Partners"
+    files:
+      - name: "sponsors"
+        label: "Sponsors List"
+        file: "_data/sponsors.json"
+        format: json
+        fields:
+          - label: "Sponsors"
+            name: "sponsors"
+            widget: "list"
+            summary: "{{fields.tier}} — {{fields.name}}"
+            fields:
+              - { label: "Company Name", name: "name", widget: "string" }
+              - label: "Tier"
+                name: "tier"
+                widget: "select"
+                options: ["Platinum", "Gold", "Silver", "Community Partner"]
+              - { label: "Company Logo", name: "logo", widget: "image", required: false }
+              - { label: "Website URL",  name: "url",  widget: "string", required: false }
+
+  # ----------------------------------------------------------
+  # 5. ALUMNI SPOTLIGHT
+  # ----------------------------------------------------------
+  - name: "alumni"
+    label: "🎓 Alumni Spotlight"
+    files:
+      - name: "alumni"
+        label: "Alumni Spotlight"
+        file: "_data/alumni.json"
+        format: json
+        fields:
+          - label: "Featured Alumni"
+            name: "featured"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.company}}"
+            fields:
+              - { label: "Full Name",     name: "name",    widget: "string" }
+              - { label: "Current Role",  name: "role",    widget: "string", hint: "e.g. Software Engineer" }
+              - { label: "Company",       name: "company", widget: "string" }
+              - { label: "Graduation Year", name: "grad_year", widget: "string" }
+              - { label: "Major",         name: "major",   widget: "string" }
+              - { label: "Quote",         name: "quote",   widget: "text" }
+              - { label: "Photo",         name: "photo",   widget: "image", required: false }
+              - { label: "LinkedIn URL",  name: "linkedin", widget: "string", required: false }

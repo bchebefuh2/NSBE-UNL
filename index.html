@@ -237,10 +237,8 @@
       background-position: center;
     }
     .hero-slide.active { opacity: 1; }
-    /* Placeholder slides using CSS gradients until photos are uploaded */
-    .hero-slide:nth-child(1) { background: linear-gradient(135deg, #1a0a0a 0%, #3a0000 50%, #1a0a0a 100%); }
-    .hero-slide:nth-child(2) { background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0a0a1a 100%); }
-    .hero-slide:nth-child(3) { background: linear-gradient(135deg, #0a1a0a 0%, #1a3a1a 50%, #0a1a0a 100%); }
+    /* Placeholder gradient shown before a photo loads */
+    .hero-slide { background: linear-gradient(135deg, #1a0a0a 0%, #2a0000 50%, #1a0a0a 100%); }
     .hero-slide img {
       width: 100%; height: 100%;
       object-fit: cover;
@@ -951,9 +949,88 @@
 
     /* Active nav link */
     .nav-links a.active { color: var(--cream); }
+
+    /* ============================================================
+       ANNOUNCEMENT BANNER
+    ============================================================ */
+    .announcement-bar {
+      background: var(--scarlet);
+      padding: 10px 0;
+      position: relative;
+      z-index: 999;
+    }
+    .announcement-bar .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .announcement-bar-text {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      color: #fff;
+      text-align: center;
+    }
+    .announcement-bar-text a { color: #fff; text-decoration: underline; }
+    .announcement-close {
+      position: absolute;
+      right: 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      cursor: pointer;
+      padding: 0 4px;
+      line-height: 1;
+      transition: color var(--transition);
+    }
+    .announcement-close:hover { color: #fff; }
+
+    /* ============================================================
+       CALENDAR TOGGLE
+    ============================================================ */
+    .cal-toggle {
+      display: flex;
+      gap: 4px;
+      background: var(--mid);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 4px;
+    }
+    .cal-toggle-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 8px 18px;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: var(--transition);
+      background: transparent;
+      color: var(--muted);
+    }
+    .cal-toggle-btn.active {
+      background: var(--scarlet);
+      color: #fff;
+    }
+    .cal-toggle-btn:not(.active):hover { color: var(--cream); }
+    .calendar-pane { display: none; }
+    .calendar-pane.active { display: block; }
+
+    /* nothing more needed here */
   </style>
 </head>
 <body>
+
+  <!-- ============================================================ ANNOUNCEMENT BANNER -->
+  <!-- Controlled entirely via _data/site.json → "announcement" → edit through /admin -->
+  <div class="announcement-bar" id="announcementBar" style="display:none;">
+    <div class="container">
+      <p class="announcement-bar-text" id="announcementText"></p>
+      <button class="announcement-close" onclick="document.getElementById('announcementBar').style.display='none'" aria-label="Dismiss">×</button>
+    </div>
+  </div>
 
   <!-- ============================================================ NAVIGATION -->
   <nav id="navbar">
@@ -984,12 +1061,8 @@
   <!-- ============================================================ HERO -->
   <section id="hero">
     <div class="hero-slides" id="heroSlides">
-      <!-- Slides are populated from _data/site.json or show gradient placeholders -->
-      <div class="hero-slide active">
-        <!-- Photo goes here: add a background-image via the CMS / data file -->
-      </div>
-      <div class="hero-slide"></div>
-      <div class="hero-slide"></div>
+      <!-- Slides are built dynamically from _data/site.json hero_photos — no limit on count -->
+      <div class="hero-slide active"></div>
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-accent"></div>
@@ -1102,20 +1175,50 @@
       <div class="calendar-wrapper reveal">
         <div class="calendar-header">
           <div class="calendar-header-title">NSBE UNL Event Calendar</div>
-          <a href="https://calendar.google.com" class="btn btn--outline" id="calendarLink" target="_blank" rel="noopener">+ Add to My Google Calendar</a>
+          <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+            <!-- Calendar toggle -->
+            <div class="cal-toggle">
+              <button class="cal-toggle-btn active" onclick="switchCal('outlook', this)">📅 Outlook</button>
+              <button class="cal-toggle-btn"         onclick="switchCal('google',  this)">🗓 Google</button>
+            </div>
+            <a id="calAddLink" href="#" class="btn btn--outline" target="_blank" rel="noopener">+ Add to My Calendar</a>
+          </div>
         </div>
-        <!-- REPLACE the src with your actual Google Calendar embed URL -->
-        <!-- How to get embed URL: Google Calendar → Settings → [Your NSBE calendar] → Scroll to "Integrate calendar" → Copy embed code src URL -->
-        <iframe
-          class="calendar-embed"
-          id="calendarEmbed"
-          src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&bgcolor=%230D0D0D&color=%23D00000"
-          frameborder="0"
-          scrolling="no"
-          title="NSBE UNL Events Calendar">
-        </iframe>
+
+        <!-- OUTLOOK CALENDAR (Primary — UNL uses Microsoft 365) -->
+        <!-- How to get your embed URL:
+             1. Open Outlook on the web (outlook.office.com) with your NSBE UNL account
+             2. Go to Calendar → click the gear icon (⚙) → Share → "Publish calendar"
+             3. Set permissions to "Can view all details" → Copy the HTML link's href
+             4. Paste it below as the <iframe> src -->
+        <div class="calendar-pane active" id="cal-outlook">
+          <iframe
+            class="calendar-embed"
+            id="outlookCalEmbed"
+            src="https://outlook.office365.com/calendar/published/YOUR_OUTLOOK_CALENDAR_HASH/calendar.html"
+            frameborder="0"
+            scrolling="yes"
+            title="NSBE UNL Outlook Calendar">
+          </iframe>
+        </div>
+
+        <!-- GOOGLE CALENDAR (Secondary option) -->
+        <!-- How to get embed URL:
+             Google Calendar → Settings (⚙) → [Your calendar] → Integrate calendar → Copy embed src URL -->
+        <div class="calendar-pane" id="cal-google">
+          <iframe
+            class="calendar-embed"
+            id="googleCalEmbed"
+            src="https://calendar.google.com/calendar/embed?src=YOUR_CALENDAR_ID%40group.calendar.google.com&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&bgcolor=%230D0D0D&color=%23D00000"
+            frameborder="0"
+            scrolling="no"
+            title="NSBE UNL Google Calendar">
+          </iframe>
+        </div>
+
         <div class="calendar-note">
-          ⚙ Admin: Update events via Google Calendar — no code changes required. See README for setup instructions.
+          ⚙ Admin: Add events in Outlook or Google Calendar — no code changes needed. Outlook is recommended since UNL uses Microsoft 365.
+          See README for setup instructions.
         </div>
       </div>
     </div>
@@ -1156,7 +1259,7 @@
       <div class="conference-hero reveal">
         <h3>Annual <br/>Convention</h3>
         <p>The NSBE Annual Convention (NSBEAC) is the largest gathering of Black engineers in the world — a career fair, technical workshops, networking, and competitions. We send UNL members every year.</p>
-        <a href="https://convention.nsbe.org" target="_blank" rel="noopener" class="btn btn--primary">NSBEAC Info ↗</a>
+        <a href="https://convention.nsbe.org" target="_blank" rel="noopener" class="btn btn--primary">NSBEAC 2026 Info ↗</a>
       </div>
 
       <div class="conf-cards">
@@ -1170,13 +1273,13 @@
           <div class="conf-card-icon">🌎</div>
           <h4>Region V Conference</h4>
           <p>Our regional conference connects UNL with NSBE chapters across the midwest. Great for networking, workshops, and regional competitions.</p>
-          <a href="https://nsbe.org/regions/region-v" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">Region V Info →</a>
+          <a href="https://nsbe.org/collegiate-region/region-5/" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">Region V Info →</a>
         </div>
         <div class="conf-card reveal reveal-delay-3">
           <div class="conf-card-icon">🎓</div>
           <h4>SEEK Program</h4>
           <p>NSBE's Summer Engineering Experience for Kids — volunteer-driven STEM outreach we participate in to give back and inspire the next generation.</p>
-          <a href="https://nsbe.org/programs/seek" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">SEEK Info →</a>
+          <a href="https://nsbe.org/seek-nsbe-jr/" target="_blank" rel="noopener" style="color:var(--scarlet); font-family:var(--font-mono); font-size:11px; letter-spacing:0.12em; margin-top:16px; display:block;">SEEK / NSBE Jr. →</a>
         </div>
         <div class="conf-card reveal reveal-delay-4">
           <div class="conf-card-icon">💼</div>
@@ -1389,7 +1492,7 @@
             <li><a href="#events">Events & Calendar</a></li>
             <li><a href="#conference">NSBE Conference</a></li>
             <li><a href="#newsletter">Newsletter</a></li>
-            <li><a href="https://nsbe.org/programs/seek" target="_blank" rel="noopener">SEEK Program</a></li>
+            <li><a href="https://nsbe.org/seek-nsbe-jr/" target="_blank" rel="noopener">SEEK Program</a></li>
           </ul>
         </div>
         <div>
@@ -1411,6 +1514,24 @@
 
   <!-- ============================================================ JAVASCRIPT -->
   <script>
+    // ---- Calendar toggle ----
+    function switchCal(type, btn) {
+      document.querySelectorAll('.cal-toggle-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.calendar-pane').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('cal-' + type).classList.add('active');
+      const addLink = document.getElementById('calAddLink');
+      if (type === 'outlook') {
+        addLink.textContent = '+ Add to Outlook';
+        addLink.href = 'https://outlook.office365.com';
+      } else {
+        addLink.textContent = '+ Add to Google Calendar';
+        addLink.href = document.getElementById('googleCalEmbed').src
+          .replace('/embed?', '/r?').replace('&mode=AGENDA','')
+          .replace('https://calendar.google.com/calendar/r','https://calendar.google.com/calendar/r');
+      }
+    }
+
     // ---- Navigation scroll behavior ----
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
@@ -1450,25 +1571,49 @@
       });
     }
 
-    // ---- Hero slideshow ----
-    const slides = document.querySelectorAll('.hero-slide');
-    const dotsContainer = document.getElementById('slideDots');
+    // ---- Hero slideshow (built dynamically — supports any number of photos) ----
     let currentSlide = 0;
+    let slides = [];
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'dot' + (i === 0 ? ' active' : '');
-      dot.onclick = () => goToSlide(i);
-      dotsContainer.appendChild(dot);
-    });
+    function buildSlides(photos) {
+      const container = document.getElementById('heroSlides');
+      const dots      = document.getElementById('slideDots');
+      container.innerHTML = '';
+      dots.innerHTML      = '';
+
+      // If no photos yet, show one placeholder gradient slide
+      const items = (photos && photos.length) ? photos : [null];
+
+      items.forEach((photo, i) => {
+        const div = document.createElement('div');
+        div.className = 'hero-slide' + (i === 0 ? ' active' : '');
+        if (photo) {
+          div.style.backgroundImage    = `url('${photo.url}')`;
+          div.style.backgroundSize     = 'cover';
+          div.style.backgroundPosition = 'center';
+        }
+        container.appendChild(div);
+
+        const dot = document.createElement('div');
+        dot.className = 'dot' + (i === 0 ? ' active' : '');
+        dot.onclick   = () => goToSlide(i);
+        dots.appendChild(dot);
+      });
+
+      slides = document.querySelectorAll('.hero-slide');
+    }
 
     function goToSlide(n) {
+      if (!slides.length) return;
       slides[currentSlide].classList.remove('active');
-      dotsContainer.children[currentSlide].classList.remove('active');
+      document.getElementById('slideDots').children[currentSlide].classList.remove('active');
       currentSlide = (n + slides.length) % slides.length;
       slides[currentSlide].classList.add('active');
-      dotsContainer.children[currentSlide].classList.add('active');
+      document.getElementById('slideDots').children[currentSlide].classList.add('active');
     }
+
+    // Build with placeholder until data loads
+    buildSlides(null);
     setInterval(() => goToSlide(currentSlide + 1), 5000);
 
     // ---- Ticker ----
@@ -1503,6 +1648,17 @@
         const siteRes = await fetch('_data/site.json');
         const site    = await siteRes.json();
 
+        // Announcement banner
+        const ann = site.announcement;
+        if (ann && ann.enabled && ann.text) {
+          const bar  = document.getElementById('announcementBar');
+          const txt  = document.getElementById('announcementText');
+          txt.innerHTML = ann.link_url
+            ? `${ann.text} <a href="${ann.link_url}" target="_blank" rel="noopener">${ann.link_text || 'Learn more →'}</a>`
+            : ann.text;
+          bar.style.display = 'block';
+        }
+
         // Email
         const emailEl = document.getElementById('contactEmailDisplay');
         emailEl.textContent = site.email;
@@ -1524,17 +1680,8 @@
           .map(([name, url]) => `<a class="social-btn" href="${url}" target="_blank" rel="noopener" title="${name}">${icons[name] || '🔗'}</a>`)
           .join('');
 
-        // Hero slides
-        if (site.hero_photos && site.hero_photos.length) {
-          const slideEls = document.querySelectorAll('.hero-slide');
-          site.hero_photos.forEach((photo, i) => {
-            if (slideEls[i]) {
-              slideEls[i].style.backgroundImage = `url('${photo.url}')`;
-              slideEls[i].style.backgroundSize  = 'cover';
-              slideEls[i].style.backgroundPosition = 'center';
-            }
-          });
-        }
+        // Hero slides — no limit on count
+        buildSlides(site.hero_photos || null);
 
         // Mailchimp form action
         if (site.mailchimp_url) {
@@ -1550,10 +1697,13 @@
         // Google Calendar
         if (site.google_calendar_id) {
           const calId = encodeURIComponent(site.google_calendar_id);
-          document.getElementById('calendarEmbed').src =
+          document.getElementById('googleCalEmbed').src =
             `https://calendar.google.com/calendar/embed?src=${calId}&ctz=America%2FChicago&mode=AGENDA&showTitle=0&showNav=1&bgcolor=%230D0D0D&color=%23D00000`;
-          document.getElementById('calendarLink').href =
-            `https://calendar.google.com/calendar/r?cid=${site.google_calendar_id}`;
+        }
+
+        // Outlook Calendar
+        if (site.outlook_calendar_url) {
+          document.getElementById('outlookCalEmbed').src = site.outlook_calendar_url;
         }
 
       } catch (err) {
